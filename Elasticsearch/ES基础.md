@@ -1223,3 +1223,127 @@ IK有两种颗粒度的拆分：
 - `ik_smart`: 会做最粗粒度的拆分
 - `ik_max_word`: 会将文本做最细粒度的拆分
 
+- ik_smart案例
+
+```json
+POST /_analyze
+{
+  "analyzer": "ik_smart",
+  "text": "中华人民共和国国歌"
+}
+
+{
+  "tokens" : [
+    {
+      "token" : "中华人民共和国",
+      "start_offset" : 0,
+      "end_offset" : 7,
+      "type" : "CN_WORD",
+      "position" : 0
+    },
+    {
+      "token" : "国歌",
+      "start_offset" : 7,
+      "end_offset" : 9,
+      "type" : "CN_WORD",
+      "position" : 1
+    }
+  ]
+}
+```
+
+- **ik_max_word**案例
+
+```json
+POST /_analyze
+{
+  "analyzer": "ik_max_word",
+  "text": "中华人民共和国国歌"
+}
+
+{
+  "tokens" : [
+    {
+      "token" : "中华人民共和国",
+      "start_offset" : 0,
+      "end_offset" : 7,
+      "type" : "CN_WORD",
+      "position" : 0
+    },
+    {
+      "token" : "中华人民",
+      "start_offset" : 0,
+      "end_offset" : 4,
+      "type" : "CN_WORD",
+      "position" : 1
+    },
+    {
+      "token" : "中华",
+      "start_offset" : 0,
+      "end_offset" : 2,
+      "type" : "CN_WORD",
+      "position" : 2
+    },
+    {
+      "token" : "华人",
+      "start_offset" : 1,
+      "end_offset" : 3,
+      "type" : "CN_WORD",
+      "position" : 3
+    },
+    {
+      "token" : "人民共和国",
+      "start_offset" : 2,
+      "end_offset" : 7,
+      "type" : "CN_WORD",
+      "position" : 4
+    },
+    {
+      "token" : "人民",
+      "start_offset" : 2,
+      "end_offset" : 4,
+      "type" : "CN_WORD",
+      "position" : 5
+    },
+    {
+      "token" : "共和国",
+      "start_offset" : 4,
+      "end_offset" : 7,
+      "type" : "CN_WORD",
+      "position" : 6
+    },
+    {
+      "token" : "共和",
+      "start_offset" : 4,
+      "end_offset" : 6,
+      "type" : "CN_WORD",
+      "position" : 7
+    },
+    {
+      "token" : "国",
+      "start_offset" : 6,
+      "end_offset" : 7,
+      "type" : "CN_CHAR",
+      "position" : 8
+    },
+    {
+      "token" : "国歌",
+      "start_offset" : 7,
+      "end_offset" : 9,
+      "type" : "CN_WORD",
+      "position" : 9
+    }
+  ]
+}
+```
+
+### 扩展词、停用词配置
+
+
+
+
+
+
+
+# 聚合查询
+
